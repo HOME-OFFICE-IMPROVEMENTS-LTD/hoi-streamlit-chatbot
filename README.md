@@ -1,6 +1,6 @@
 # 🎈 Starter AI Chatbot for Azure
 
-[![Deploy to Azure](https://img.shields.io/badge/Deploy-Azure-blue)](#)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FHOME-OFFICE-IMPROVEMENTS-LTD%2Fhoi-streamlit-chatbot%2Fmain%2Farm-templates%2FmainTemplate.json)
 
 Starter example for building an OpenAI chatbot app using Streamlit and deploying it to Azure.
 
@@ -11,9 +11,9 @@ Starter example for building an OpenAI chatbot app using Streamlit and deploying
 This app demonstrates how to integrate OpenAI's GPT models with Streamlit to build a simple chatbot interface.
 
 It’s designed for:
-- Quick deployment 🧪
-- Easy testing 🧠
-- Zero-hassle hosting 🚀
+- Quick deployment 🧪  
+- Easy testing 🧠  
+- Zero-hassle hosting 🚀  
 
 ### ✅ Features
 - Chatbot powered by OpenAI API
@@ -70,5 +70,3 @@ Apache-2.0 License
 
 **Home & Office Improvements Ltd.**  
 🔗 https://hoiltd.com
-
----
