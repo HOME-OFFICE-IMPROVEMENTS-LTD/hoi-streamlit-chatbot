@@ -1,50 +1,74 @@
-# 🎈 Streamlit + LLM Examples App
+# 🎈 Starter AI Chatbot for Azure
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)
+[![Deploy to Azure](https://img.shields.io/badge/Deploy-Azure-blue)](#)
 
-Starter examples for building LLM apps with Streamlit.
+Starter example for building an OpenAI chatbot app using Streamlit and deploying it to Azure.
 
-## Overview of the App
+---
 
-This app showcases a growing collection of LLM minimum working examples.
+## 🌟 Overview of the App
 
-Current examples include:
+This app demonstrates how to integrate OpenAI's GPT models with Streamlit to build a simple chatbot interface.
 
-- Chatbot
-- File Q&A
-- Chat with Internet search
-- LangChain Quickstart
-- LangChain PromptTemplate
-- Chat with user feedback
+It’s designed for:
+- Quick deployment 🧪
+- Easy testing 🧠
+- Zero-hassle hosting 🚀
 
-## Demo App
+### ✅ Features
+- Chatbot powered by OpenAI API
+- Secure key handling via environment variables
+- Simple UI with Streamlit
+- One-click deploy to Azure via Marketplace
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://llm-examples.streamlit.app/)
+---
 
-### Get an OpenAI API key
+## ⚙️ Setup Instructions
 
-You can get your own OpenAI API key by following the following instructions:
+### 1️⃣ Get an OpenAI API Key
+Go to 👉 https://platform.openai.com/account/api-keys
 
-1. Go to https://platform.openai.com/account/api-keys.
-2. Click on the `+ Create new secret key` button.
-3. Next, enter an identifier name (optional) and click on the `Create secret key` button.
+- Click **+ Create new secret key**
+- Save your key securely
 
-### Enter the OpenAI API key in Streamlit Community Cloud
+---
 
-To set the OpenAI API key as an environment variable in Streamlit apps, do the following:
+### 2️⃣ Set the API Key in Azure
+If deploying through Azure, the key will be set via the Azure portal (securely stored as an environment variable).
 
-1. At the lower right corner, click on `< Manage app` then click on the vertical "..." followed by clicking on `Settings`.
-2. This brings the **App settings**, next click on the `Secrets` tab and paste the API key into the text box as follows:
+Running locally? Just set it manually:
 
-```sh
-OPENAI_API_KEY='xxxxxxxxxx'
+```bash
+export OPENAI_API_KEY='your-key-here'
 ```
 
-## Run it locally
+---
 
-```sh
-virtualenv .venv
+### 3️⃣ Run the Chatbot Locally
+
+```bash
+# Create and activate a virtual environment
+python -m venv .venv
 source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Run the app
 streamlit run Chatbot.py
 ```
+
+---
+
+## 📄 License
+
+Apache-2.0 License
+
+---
+
+## 🏢 Maintained by
+
+**Home & Office Improvements Ltd.**  
+🔗 https://hoiltd.com
+
+---
