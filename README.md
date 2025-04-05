@@ -77,7 +77,7 @@ cd hoi-streamlit-chatbot
 
 3. If prompted, **"Reopen in Container"**, accept it.
 
-> This will build the container with all dependencies.
+> This will build the container with all dependencies automatically.
 
 4. Once inside the container:
 
