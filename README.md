@@ -60,6 +60,35 @@ streamlit run Chatbot.py
 
 ---
 
+## 💻 Run in Visual Studio Code (Dev Container)
+
+If you're using [Visual Studio Code](https://code.visualstudio.com/) and have **Docker** installed, you can run this app instantly using a **Dev Container**.
+
+### 🚀 Quick Start
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot.git
+cd hoi-streamlit-chatbot
+```
+
+2. **Open the folder in VS Code**
+
+3. If prompted, **"Reopen in Container"**, accept it.
+
+> This will build the container with all dependencies.
+
+4. Once inside the container:
+
+```bash
+streamlit run Chatbot.py
+```
+
+💡 The `OPENAI_API_KEY` can be added to your `.env` file or exported in the terminal.
+
+---
+
 ## 📄 License
 
 Apache-2.0 License
