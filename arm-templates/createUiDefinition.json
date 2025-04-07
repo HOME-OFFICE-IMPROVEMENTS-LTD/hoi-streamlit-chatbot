@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/uiDefinition.json#",
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "1.0.0",
+    "parameters": {
+      "basics": [
+        {
+          "name": "siteName",
+          "type": "string",
+          "label": "Web App Name",
+          "defaultValue": "[uniqueString(resourceGroup().id)]",
+          "toolTip": "Enter a unique name for the Azure Web App."
+        },
+        {
+          "name": "hostingPlanName",
+          "type": "string",
+          "label": "App Service Plan Name",
+          "defaultValue": "chatbot-plan",
+          "toolTip": "Enter a name for your hosting plan."
+        },
+        {
+          "name": "openaiKey",
+          "type": "securestring",
+          "label": "OpenAI API Key",
+          "toolTip": "Enter your OpenAI API Key. You can get one from https://platform.openai.com/account/api-keys."
+        }
+      ],
+      "outputs": {
+        "siteName": "[siteName]",
+        "hostingPlanName": "[hostingPlanName]",
+        "openaiKey": "[openaiKey]"
+      }
+    }
+  }
+  
