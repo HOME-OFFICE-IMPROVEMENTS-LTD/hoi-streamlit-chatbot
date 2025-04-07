@@ -19,15 +19,59 @@
           "toolTip": "Enter a name for your hosting plan."
         },
         {
+          "name": "sku",
+          "type": "Microsoft.Common.DropDown",
+          "label": "App Service SKU",
+          "defaultValue": {
+            "name": "B1",
+            "tier": "Basic"
+          },
+          "toolTip": "Choose a SKU tier for your App Service Plan.",
+          "constraints": {
+            "allowedValues": [
+              {
+                "label": "Free (F1)",
+                "value": {
+                  "name": "F1",
+                  "tier": "Free"
+                }
+              },
+              {
+                "label": "Shared (D1)",
+                "value": {
+                  "name": "D1",
+                  "tier": "Shared"
+                }
+              },
+              {
+                "label": "Basic (B1)",
+                "value": {
+                  "name": "B1",
+                  "tier": "Basic"
+                }
+              },
+              {
+                "label": "Premium V2 (P1v2)",
+                "value": {
+                  "name": "P1v2",
+                  "tier": "PremiumV2"
+                }
+              }
+            ],
+            "required": true
+          }
+        },
+        {
           "name": "openaiKey",
           "type": "securestring",
           "label": "OpenAI API Key",
-          "toolTip": "Enter your OpenAI API Key. You can get one from https://platform.openai.com/account/api-keys."
+          "toolTip": "Enter your OpenAI API Key from https://platform.openai.com/account/api-keys."
         }
       ],
       "outputs": {
         "siteName": "[siteName]",
         "hostingPlanName": "[hostingPlanName]",
+        "sku": "[sku]",
         "openaiKey": "[openaiKey]"
       }
     }
