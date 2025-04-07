@@ -17,6 +17,15 @@
       "location": {
         "type": "string",
         "defaultValue": "[resourceGroup().location]",
+        "allowedValues": [
+          "East US",
+          "West US",
+          "Central US",
+          "North Europe",
+          "West Europe",
+          "Southeast Asia",
+          "East Asia"
+        ],
         "metadata": {
           "description": "Azure region."
         }
