@@ -24,7 +24,8 @@
           "North Europe",
           "West Europe",
           "Southeast Asia",
-          "East Asia"
+          "East Asia",
+          "East US 2" // Added East US 2
         ],
         "metadata": {
           "description": "Azure region."
