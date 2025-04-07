@@ -26,6 +26,34 @@
         "metadata": {
           "description": "Your OpenAI API key."
         }
+      },
+      "sku": {
+        "type": "object",
+        "defaultValue": {
+          "name": "B1",
+          "tier": "Basic"
+        },
+        "allowedValues": [
+          {
+            "name": "F1",
+            "tier": "Free"
+          },
+          {
+            "name": "D1",
+            "tier": "Shared"
+          },
+          {
+            "name": "B1",
+            "tier": "Basic"
+          },
+          {
+            "name": "P1v2",
+            "tier": "PremiumV2"
+          }
+        ],
+        "metadata": {
+          "description": "Select the SKU for the App Service Plan."
+        }
       }
     },
     "resources": [
@@ -34,10 +62,7 @@
         "apiVersion": "2022-03-01",
         "name": "[parameters('hostingPlanName')]",
         "location": "[parameters('location')]",
-        "sku": {
-          "name": "F1",
-          "tier": "Free"
-        },
+        "sku": "[parameters('sku')]",
         "properties": {}
       },
       {
@@ -68,4 +93,3 @@
       }
     }
   }
-  
