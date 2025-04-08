@@ -69,10 +69,17 @@
             {
               "name": "WEBSITE_RUN_FROM_PACKAGE",
               "value": "https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/releases/latest/download/deploy.zip"
+            },
+            {
+              "name": "WEBSITES_PORT",
+              "value": "8501"
             }
-          ]
-        }
-      }
+          ],
+          "linuxFxVersion": "PYTHON|3.11"
+        },
+        "httpsOnly": true
+      },
+      "kind": "app,linux"
     }
   ],
   "outputs": {
@@ -82,3 +89,4 @@
     }
   }
 }
+
