@@ -1,6 +1,6 @@
 # 🎈 Starter AI Chatbot for Azure
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FHOME-OFFICE-IMPROVEMENTS-LTD%2Fhoi-streamlit-chatbot%2Fmain%2Farm-templates%2FmainTemplate.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/main/arm-templates/mainTemplate.json)
 
 Starter example for building an OpenAI chatbot app using Streamlit and deploying it to Azure.
 
