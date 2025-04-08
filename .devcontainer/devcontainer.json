@@ -1,46 +1,70 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/python-3
+// This file configures the development container for your project.
+// A development container is a Docker-based environment that includes all the tools and dependencies needed for development.
+// For more details, see: https://aka.ms/devcontainer.json
+
 {
-    "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+    // Specifies the base image for the development container.
+    // Here, we use a Python 3.11 image based on Debian Bookworm.
+    "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+
+    // Customizations for the development environment.
     "customizations": {
+        // Codespaces-specific settings.
         "codespaces": {
-          "openFiles": [
-            "README.md",
-            "Chatbot.py"
-          ]
+            // Files to open automatically when the container starts.
+            "openFiles": [
+                "README.md",
+                "Chatbot.py"
+            ]
         },
+        // VS Code-specific settings and extensions.
         "vscode": {
-          "settings": {},
-          "extensions": [
-            "ms-python.python",
-            "ms-python.vscode-pylance"
-          ]
+            // VS Code settings can be customized here (currently empty).
+            "settings": {},
+            // Extensions to install automatically in the container.
+            "extensions": [
+                "ms-python.python", // Python extension for VS Code.
+                "ms-python.vscode-pylance", // Pylance for Python language support.
+                "dbaeumer.vscode-eslint", // ESLint for JavaScript/TypeScript linting.
+                "github.vscode-github-actions", // GitHub Actions support.
+                "ms-azuretools.vscode-azureresourcegroups" // Azure Resource Groups management.
+            ]
         }
-      },
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [
-        8501
-    ],
-    // Use 'postCreateCommand' to run commands after the container is created.
-    // Install app dependencies.
-    "postCreateCommand": "pip3 install --user -r requirements.txt",
-    // Use 'postAttachCommand' to run commands after a tool has attached to the container.
-    // Start the app.
-    "postAttachCommand": {
-        "server": "streamlit run Chatbot.py --server.enableCORS false --server.enableXsrfProtection false"
     },
+
+    // Ports to forward from the container to the host machine.
+    // This allows the application running inside the container to be accessed from the host.
+    "forwardPorts": [
+        8501 // Default port for Streamlit applications.
+    ],
+
+    // Commands to run after the container is created.
+    // This is typically used to install dependencies or set up the environment.
+    "postCreateCommand": "pip3 install --user -r requirements.txt && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash", // Installs Python dependencies and Azure CLI.
+
+    // Commands to run after attaching to the container.
+    // This is useful for starting the application or other services.
+    "postAttachCommand": {
+        "server": "streamlit run Chatbot.py --server.enableCORS false --server.enableXsrfProtection false" // Starts the Streamlit app.
+    },
+
+    // Attributes for forwarded ports.
     "portsAttributes": {
         "8501": {
-            "label": "Application",
-            "onAutoForward": "openPreview"
+            "label": "Application", // Label for the port in the VS Code UI.
+            "onAutoForward": "openPreview" // Automatically opens a preview when the port is forwarded.
         }
     },
-    // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+
+    // Specifies the user to use inside the container.
+    // Using a non-root user (like "vscode") is recommended for security.
     "remoteUser": "vscode",
+
+    // Features to include in the container.
+    // These are pre-installed tools and utilities.
     "features": {
-        // Optional features for development - increase container boot time!
-        // "ghcr.io/devcontainers-contrib/features/coverage-py:2": {},
-        // "git": "latest",
-        // "github-cli": "latest"
+        "node": "lts", // Installs the latest LTS version of Node.js.
+        "git": "latest", // Installs the latest version of Git.
+        "github-cli": "latest" // Installs the latest version of the GitHub CLI (gh).
     }
 }

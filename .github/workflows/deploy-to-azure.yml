@@ -1,0 +1,70 @@
+name: Deploy Streamlit Chatbot to Azure Web App
+
+on:
+  push:
+    branches:
+      - feature/hoi-chatbot-app
+    paths:
+      - '**.py'
+      - 'requirements.txt'
+      - 'startup.sh'
+      - 'chatbot.zip'
+
+jobs:
+  deploy:
+    name: Build and Deploy to Azure
+    runs-on: ubuntu-latest
+
+    env:
+      AZURE_WEBAPP_NAME: hoi-chatbot-linux-site
+      AZURE_RG: hoi-chatbot-streamlit-app-rg
+
+    steps:
+      - name: ❤️ Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔑 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 👀 Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: 📁 Zip the app
+        run: |
+          zip -r chatbot.zip . -x "*.git*" "*.venv*" "__pycache__/*"
+
+      - name: ✨ Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_MSA }}
+
+      - name: 🚤 Deploy to Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          slot-name: production
+          package: chatbot.zip
+
+      - name: 🚀 Set Streamlit Startup Command
+        run: |
+          az webapp config set \
+            --resource-group ${{ env.AZURE_RG }} \
+            --name ${{ env.AZURE_WEBAPP_NAME }} \
+            --startup-file "streamlit run Chatbot.py --server.enableCORS false --server.enableXsrfProtection false"
+
+      - name: 🔐 Inject OpenAI API Key into App Settings
+        run: |
+          az webapp config appsettings set \
+            --resource-group ${{ env.AZURE_RG }} \
+            --name ${{ env.AZURE_WEBAPP_NAME }} \
+            --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+
+      - name: 🔍 Confirm Deployment
+        run: |
+          echo "App deployed at: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
+          echo "Check the logs for any errors."
