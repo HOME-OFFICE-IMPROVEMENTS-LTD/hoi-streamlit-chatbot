@@ -40,7 +40,8 @@
 
     // Commands to run after the container is created.
     // This is typically used to install dependencies or set up the environment.
-    "postCreateCommand": "pip3 install --user -r requirements.txt && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash", // Installs Python dependencies and Azure CLI.
+    "postCreateCommand": "pip3 install --user -r requirements.txt && sudo apt-get update && sudo apt-get install -y curl && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && az --version || echo 'Azure CLI installation failed'", 
+    // Installs Python dependencies, ensures curl is installed, installs the Azure CLI, and verifies the installation.
 
     // Commands to run after attaching to the container.
     // This is useful for starting the application or other services.
