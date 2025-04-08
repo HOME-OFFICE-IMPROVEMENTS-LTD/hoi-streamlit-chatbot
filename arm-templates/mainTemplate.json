@@ -77,6 +77,10 @@
             {
               "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
               "value": "false"
+            },
+            {
+              "name": "WEBSITE_RUN_FROM_PACKAGE",
+              "value": "https://raw.githubusercontent.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/main/deploy.zip"
             }
           ],
           "appCommandLine": "streamlit run Chatbot.py --server.port 8501 --server.address 0.0.0.0"
