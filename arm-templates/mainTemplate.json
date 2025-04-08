@@ -65,6 +65,10 @@
             {
               "name": "OPENAI_API_KEY",
               "value": "[parameters('openaiKey')]"
+            },
+            {
+              "name": "WEBSITE_RUN_FROM_PACKAGE",
+              "value": "https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/releases/latest/download/deploy.zip"
             }
           ]
         }

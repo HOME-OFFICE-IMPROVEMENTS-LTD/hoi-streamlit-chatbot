@@ -23,11 +23,12 @@
             "settings": {},
             // Extensions to install automatically in the container.
             "extensions": [
-                "ms-python.python", // Python extension for VS Code.
-                "ms-python.vscode-pylance", // Pylance for Python language support.
-                "dbaeumer.vscode-eslint", // ESLint for JavaScript/TypeScript linting.
-                "github.vscode-github-actions", // GitHub Actions support.
-                "ms-azuretools.vscode-azureresourcegroups" // Azure Resource Groups management.
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "dbaeumer.vscode-eslint",
+                "github.vscode-github-actions",
+                "ms-azuretools.vscode-azureresourcegroups",
+                "ms-azuretools.vscode-docker"
             ]
         }
     },
