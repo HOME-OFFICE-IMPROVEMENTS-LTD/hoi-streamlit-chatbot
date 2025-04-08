@@ -3,7 +3,7 @@ name: Deploy Streamlit Chatbot to Azure Web App
 on:
   push:
     branches:
-      - feature/hoi-chatbot-app
+      - main
     paths:
       - '**.py'
       - 'requirements.txt'
