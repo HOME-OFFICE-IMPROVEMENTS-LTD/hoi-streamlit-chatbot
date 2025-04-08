@@ -1,0 +1,13 @@
+.dockerignore
+.venv
+__pycache__/
+.git
+*.pyc
+*.pyo
+*.pyd
+chatbot.zip
+*.db
+*.log
+.DS_Store
+.vscode
+.env
