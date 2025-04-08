@@ -55,12 +55,15 @@
       "apiVersion": "2022-03-01",
       "name": "[parameters('siteName')]",
       "location": "[parameters('location')]",
+      "kind": "app,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
       ],
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
+        "httpsOnly": true,
         "siteConfig": {
+          "linuxFxVersion": "PYTHON|3.11",
           "appSettings": [
             {
               "name": "OPENAI_API_KEY",
@@ -73,13 +76,14 @@
             {
               "name": "WEBSITES_PORT",
               "value": "8501"
+            },
+            {
+              "name": "PORT",
+              "value": "8501"
             }
-          ],
-          "linuxFxVersion": "PYTHON|3.11"
-        },
-        "httpsOnly": true
-      },
-      "kind": "app,linux"
+          ]
+        }
+      }
     }
   ],
   "outputs": {
@@ -89,4 +93,3 @@
     }
   }
 }
-
