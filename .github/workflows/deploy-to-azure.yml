@@ -64,7 +64,19 @@ jobs:
             --name ${{ env.AZURE_WEBAPP_NAME }} \
             --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
+      - name: Enable Diagnostic Logs
+        run: |
+          az webapp log config \
+            --resource-group ${{ env.AZURE_RG }} \
+            --name ${{ env.AZURE_WEBAPP_NAME }} \
+            --application-logging true \
+            --detailed-error-messages true
+
       - name: 🔍 Confirm Deployment
         run: |
           echo "App deployed at: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
           echo "Check the logs for any errors."
+
+      - name: Check Deployment Status
+        run: |
+          az webapp show --resource-group ${{ env.AZURE_RG }} --name ${{ env.AZURE_WEBAPP_NAME }} --query "state"
