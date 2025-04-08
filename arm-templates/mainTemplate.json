@@ -18,7 +18,7 @@
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
       "metadata": {
-        "description": "Location for all resources"
+        "description": "Azure region."
       }
     },
     "openaiKey": {
@@ -33,12 +33,6 @@
         "name": "B1",
         "tier": "Basic"
       },
-      "allowedValues": [
-        { "name": "F1", "tier": "Free" },
-        { "name": "D1", "tier": "Shared" },
-        { "name": "B1", "tier": "Basic" },
-        { "name": "P1v2", "tier": "PremiumV2" }
-      ],
       "metadata": {
         "description": "Select the SKU for the App Service Plan."
       }
@@ -71,18 +65,9 @@
             {
               "name": "OPENAI_API_KEY",
               "value": "[parameters('openaiKey')]"
-            },
-            {
-              "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
-              "value": "true"
             }
           ]
-        },
-        "repositorySiteName": "[parameters('siteName')]",
-        "repositoryUrl": "https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot",
-        "branch": "main",
-        "isManualIntegration": true,
-        "deploymentMethod": "GitHub"
+        }
       }
     }
   ],
