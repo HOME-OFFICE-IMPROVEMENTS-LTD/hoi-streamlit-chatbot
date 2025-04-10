@@ -55,7 +55,7 @@ jobs:
           az webapp config set \
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
-            --startup-file "streamlit run Chatbot.py --server.enableCORS false --server.enableXsrfProtection false"
+            --startup-file "streamlit run Chatbot.py --server.port 8501 --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false"
 
       - name: 🔐 Inject OpenAI API Key into App Settings
         run: |
