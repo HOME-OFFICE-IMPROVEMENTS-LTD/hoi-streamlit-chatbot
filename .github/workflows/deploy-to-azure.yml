@@ -9,6 +9,14 @@ on:
       - 'requirements.txt'
       - 'startup.sh'
       - 'chatbot.zip'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.py'
+      - 'requirements.txt'
+      - 'startup.sh'
+      - 'chatbot.zip'
 
 jobs:
   test:
