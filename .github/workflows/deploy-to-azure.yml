@@ -49,8 +49,8 @@ jobs:
     needs: test
 
     env:
-      AZURE_WEBAPP_NAME: hoi-chatbot-linux-site
-      AZURE_RG: hoi-chatbot-streamlit-app-rg
+      AZURE_WEBAPP_NAME: hoi-streamlit-chatbot-portal-001
+      AZURE_RG: hoi-streamlit-chatbot-001-rg
 
     steps:
       - name: ❤️ Checkout Code
