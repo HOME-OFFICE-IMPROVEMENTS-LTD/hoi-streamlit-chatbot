@@ -1,14 +1,21 @@
 #!/bin/bash
 
 echo "🚀 Activating Python runtime"
-
-python3 --version
-pip3 --version
+python --version
+pip install --upgrade pip
 
 echo "📦 Installing dependencies"
-pip3 install --upgrade pip
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 echo "💬 Launching Streamlit Chatbot..."
-streamlit run Chatbot.py --server.enableCORS false --server.enableXsrfProtection false
+PORT=${PORT:-8000}
+streamlit run Chatbot.py \
+    --server.port $PORT \
+    --server.address 0.0.0.0 \
+    --server.enableCORS false \
+    --server.enableXsrfProtection false
+
+
+
+
 
