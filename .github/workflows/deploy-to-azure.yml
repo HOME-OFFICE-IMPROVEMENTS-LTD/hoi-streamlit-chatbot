@@ -41,8 +41,8 @@ jobs:
     needs: test
 
     env:
-      AZURE_WEBAPP_NAME: hoi-streamlit-chatbot-portal-001
-      AZURE_RG: hoi-streamlit-chatbot-001-rg
+      AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME }}
+      AZURE_RG: ${{ vars.AZURE_RG }}
 
     steps:
       - name: ❤️ Checkout Code
