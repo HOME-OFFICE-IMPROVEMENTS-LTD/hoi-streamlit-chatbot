@@ -45,45 +45,44 @@ jobs:
       AZURE_RG: hoi-streamlit-chatbot-001-rg
 
     steps:
-      - name: Checkout Code
+      - name: ❤️ Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: 🔑 Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: 👀 Install dependencies
         run: |
           python -m venv .venv
           source .venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Zip the app
+      - name: 📁 Zip the app
         run: |
           zip -r chatbot.zip . -x "*.git*" "*.venv*" "__pycache__/*"
 
-      - name: Azure Login
+      - name: ✨ Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_MSA }}
 
-      - name: Deploy to Web App (Clean)
+      - name: 🚤 Deploy to Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: production
           package: chatbot.zip
-          clean: true  # 🧹 Helps prevent 409 errors
 
-      - name: Set Streamlit Startup Command
+      - name: 🚀 Set Streamlit Startup Command
         run: |
           az webapp config set \
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
-            --startup-file "streamlit run Chatbot.py --server.port 8000 --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false"
+            --startup-file "streamlit run Chatbot.py --server.port 8501 --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false"
 
-      - name: Inject OpenAI API Key into App Settings
+      - name: 🔐 Inject OpenAI API Key into App Settings
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.AZURE_RG }} \
@@ -98,6 +97,14 @@ jobs:
             --application-logging true \
             --detailed-error-messages true
 
-      - name: Confirm Deployment
+      - name: 🔍 Confirm Deployment
         run: |
-          echo "App deployed at: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
+          echo "✅ App deployed at: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
+
+      - name: Check Deployment Status
+        run: |
+          az webapp show \
+            --resource-group ${{ env.AZURE_RG }} \
+            --name ${{ env.AZURE_WEBAPP_NAME }} \
+            --query "state"
+
