@@ -94,13 +94,15 @@ jobs:
             --name ${{ env.AZURE_WEBAPP_NAME }} \
             --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
-      - name: Enable Diagnostic Logs
+      - name: 📜 Enable Diagnostic Logs
         run: |
           az webapp log config \
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
-            --application-logging true \
-            --detailed-error-messages true
+            --application-logging filesystem \
+            --detailed-error-messages true \
+            --failed-request-tracing true \
+            --web-server-logging filesystem
 
       - name: 🔍 Confirm Deployment
         run: |
