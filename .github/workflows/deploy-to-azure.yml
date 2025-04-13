@@ -80,7 +80,7 @@ jobs:
           slot-name: production
           package: chatbot.zip
 
-      - name: 🚀 Set Startup Command to startup.sh
+      - name: 🚀 Set Streamlit Startup Command
         run: |
           az webapp config set \
             --resource-group ${{ env.AZURE_RG }} \
@@ -94,15 +94,15 @@ jobs:
             --name ${{ env.AZURE_WEBAPP_NAME }} \
             --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
-      - name: 📜 Enable Diagnostic Logs
+      - name: 🛠️ Enable Diagnostic Logs
         run: |
           az webapp log config \
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
             --application-logging filesystem \
+            --web-server-logging filesystem \
             --detailed-error-messages true \
-            --failed-request-tracing true \
-            --web-server-logging filesystem
+            --failed-request-tracing true
 
       - name: 🔍 Confirm Deployment
         run: |
