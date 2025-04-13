@@ -68,6 +68,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_MSA }}
 
+      - name: ✅ Verify Azure Web App
+        run: |
+          az group exists --name ${{ env.AZURE_RG }} || (echo "❌ Resource group does not exist!" && exit 1)
+          az webapp show --resource-group ${{ env.AZURE_RG }} --name ${{ env.AZURE_WEBAPP_NAME }} || (echo "❌ Web app does not exist!" && exit 1)
+
       - name: 🚤 Deploy to Web App
         uses: azure/webapps-deploy@v2
         with:
@@ -107,4 +112,5 @@ jobs:
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
             --query "state"
+
 
