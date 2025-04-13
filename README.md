@@ -1,6 +1,8 @@
 # 🎈 Starter AI Chatbot for Azure
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FHOME-OFFICE-IMPROVEMENTS-LTD%2Fhoi-streamlit-chatbot%2Fmain%2Farm-templates%2FmainTemplate.json%3FcreateUiDefinitionUri%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FHOME-OFFICE-IMPROVEMENTS-LTD%2Fhoi-streamlit-chatbot%2Fmain%2Farm-templates%2FcreateUiDefinition.json)
+[![CI/CD Status](https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/actions/workflows/deploy-to-azure.yml/badge.svg)](https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/actions/workflows/deploy-to-azure.yml)
+[![Latest Tag](https://img.shields.io/github/v/tag/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot?label=version)](https://github.com/HOME-OFFICE-IMPROVEMENTS-LTD/hoi-streamlit-chatbot/tags)
 
 Starter example for building an OpenAI chatbot app using Streamlit and deploying it to Azure.
 
@@ -86,6 +88,14 @@ streamlit run Chatbot.py
 ```
 
 💡 The `OPENAI_API_KEY` can be added to your `.env` file or exported in the terminal.
+
+---
+
+## 📦 Azure Marketplace
+
+This solution is also published to the [Azure Marketplace](https://partner.microsoft.com/en-us/dashboard/commercial-marketplace/overview), enabling one-click deployment for your team or customers.
+
+🆔 **Attribution ID**: `pid-18a4e373-a114-459e-a870-1ffebf66b78b-partnercenter`
 
 ---
 
