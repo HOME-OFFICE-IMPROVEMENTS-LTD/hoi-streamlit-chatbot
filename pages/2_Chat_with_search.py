@@ -1,9 +1,9 @@
 import streamlit as st
 
 from langchain.agents import initialize_agent, AgentType
-from langchain.callbacks import StreamlitCallbackHandler
-from langchain.chat_models import ChatOpenAI
-from langchain.tools import DuckDuckGoSearchRun
+from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.tools import DuckDuckGoSearchRun
 
 with st.sidebar:
     openai_api_key = st.text_input(
