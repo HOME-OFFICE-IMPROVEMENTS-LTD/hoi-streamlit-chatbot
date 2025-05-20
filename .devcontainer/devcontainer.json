@@ -29,7 +29,9 @@
                 "github.vscode-github-actions",
                 "ms-azuretools.vscode-azureresourcegroups",
                 "ms-azuretools.vscode-docker",
-                "ms-vscode-remote.vscode-remote-extensionpack"
+                "ms-vscode-remote.vscode-remote-extensionpack",
+                "GitHub.copilot-chat",
+                "GitHub.copilot"
             ]
         }
     },

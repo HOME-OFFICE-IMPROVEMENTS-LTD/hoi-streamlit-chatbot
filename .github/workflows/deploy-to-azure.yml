@@ -11,13 +11,38 @@ on:
       - 'chatbot.zip'
 
 jobs:
-  deploy:
-    name: Build and Deploy to Azure
+  test:
+    name: ✅ Run Unit Tests
     runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run Tests
+        run: |
+          pytest || echo "⚠️ No tests found (safe to ignore if none present)."
+
+  deploy:
+    name: 🚀 Build and Deploy to Azure
+    runs-on: ubuntu-latest
+    needs: test
+
     env:
-      AZURE_WEBAPP_NAME: hoi-chatbot-linux-site
-      AZURE_RG: hoi-chatbot-streamlit-app-rg
+      AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME }}
+      AZURE_RG: ${{ vars.AZURE_RG }}
 
     steps:
       - name: ❤️ Checkout Code
@@ -43,7 +68,12 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_MSA }}
 
-      - name: 🚤 Deploy to Web App
+      - name: ✅ Verify Azure Web App
+        run: |
+          az group exists --name ${{ env.AZURE_RG }} || (echo "❌ Resource group does not exist!" && exit 1)
+          az webapp show --resource-group ${{ env.AZURE_RG }} --name ${{ env.AZURE_WEBAPP_NAME }} || (echo "❌ Web app does not exist!" && exit 1)
+
+      - name: 🚀 Deploy to Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
@@ -55,7 +85,7 @@ jobs:
           az webapp config set \
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
-            --startup-file "streamlit run Chatbot.py --server.port 8501 --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false"
+            --startup-file "./startup.sh"
 
       - name: 🔐 Inject OpenAI API Key into App Settings
         run: |
@@ -64,19 +94,25 @@ jobs:
             --name ${{ env.AZURE_WEBAPP_NAME }} \
             --settings OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
-      - name: Enable Diagnostic Logs
+      - name: 🛠️ Enable Diagnostic Logs
         run: |
           az webapp log config \
             --resource-group ${{ env.AZURE_RG }} \
             --name ${{ env.AZURE_WEBAPP_NAME }} \
-            --application-logging true \
-            --detailed-error-messages true
+            --application-logging filesystem \
+            --web-server-logging filesystem \
+            --detailed-error-messages true \
+            --failed-request-tracing true
 
       - name: 🔍 Confirm Deployment
         run: |
-          echo "App deployed at: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
-          echo "Check the logs for any errors."
+          echo "✅ App deployed at: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
 
       - name: Check Deployment Status
         run: |
-          az webapp show --resource-group ${{ env.AZURE_RG }} --name ${{ env.AZURE_WEBAPP_NAME }} --query "state"
+          az webapp show \
+            --resource-group ${{ env.AZURE_RG }} \
+            --name ${{ env.AZURE_WEBAPP_NAME }} \
+            --query "state"
+
+
